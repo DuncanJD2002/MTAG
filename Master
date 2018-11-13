@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+body {
+    background-image: url("https://media.giphy.com/media/QE8hJSxt8JqIU/giphy.gif");
+
+}
+</style>
+<body>
+
+    <button onClick="Store()">Store</button>
+    <button onClick="ShowInv()">Inventory</button>
+    <button onClick="ShowMoney()">Penny Pincher</button>
+<button onClick="StartMenu()">Start</button>
+<button onClick="Continue()">Continue</button>
+
+    <p id ="Currency"></p>
+
+<script type = "text/javascript"></script>
+
+
+<script>
+var DisplayStore = "";
+var DisplayInventory = "";
+var pickItem;
+var currency = Math.floor(Math.random() * 1500) + 100;
+var ShopItems = ["Infinity Gauntlet", "Ancinet Grim Reaper Costume", "Hepatitis C in a syringe"];
+var Inventory = ["Magic Mushrooms", "XXX Magazine", "K Y Jelly"];
+var prices = [500, 600, 1000];
+
+
+// functions 
+//==========
+
+function Store(){
+    DisplayStore = "";
+    for (i=0; i < ShopItems.length; i++){
+        DisplayStore += (i+1) + ShopItems[i] + "\n";
+    }
+
+        pickItem = (prompt(DisplayStore)-1);
+
+    if(currency >= prices[pickItem] && confirm(ShopItems[pickItem] + " " + prices[pickItem] + " " + "Oyster Crackers") == true){
+        currency -= prices[pickItem];
+        Inventory.push(ShopItems[pickItem]);
+        alert("Thank you Senpai");
+
+            if(confirm( "Return to Store?") == true){
+                Store();
+
+            }else{
+
+                alert("Come Again");
+            }
+    }else if(currency <= prices[pickItem] && confirm(ShopItems[pickItem] + "\nPrice: " + prices[pickItem] + "Oyster Crackers") == true){
+        alert("Insufficient funds.");
+        Store();
+    }else {
+        alert("Come Again.")
+    }
+}
+function ShowMoney(){
+    alert("Money: " + currency + " Oyster Crackers")
+}
+function ShowInv(){
+    DisplayInventory = "";
+    for (i=0; i < Inventory.length; i++){
+        DisplayInventory += Inventory[i] + "\n";
+    }
+    alert(DisplayInventory)
+}
+
+function death(){
+    location.reload(forceGet);
+}
+
+
+
+
+</script>
+</body>
+</html>
